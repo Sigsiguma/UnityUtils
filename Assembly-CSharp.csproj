@@ -48,6 +48,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Debug\FadeTest\FadeTest.cs" />
      <Compile Include="Assets\Scripts\Debug\SoundTest\PlayTest.cs" />
      <Compile Include="Assets\Scripts\Utility\Fade\Fade.cs" />
      <Compile Include="Assets\Scripts\Utility\Fade\FadeManager.cs" />
