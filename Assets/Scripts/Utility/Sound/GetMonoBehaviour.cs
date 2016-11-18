@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GetMonoBehaviour : MonoBehaviour {
+public class GetMonoBehaviour : MonoBehaviour
+{
 
-    public MonoBehaviour mono_behaviour_ { get { return this; }}
+    public MonoBehaviour mono_behaviour_ { get { return this; } }
 }

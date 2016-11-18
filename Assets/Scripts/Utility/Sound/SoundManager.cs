@@ -28,33 +28,68 @@ using System.Collections;
  *  utility.sound.SoundManager.BGM.PauseAll();
  *  
  */
-namespace utility.sound {
-    public static class SoundManager {
+namespace utility.sound
+{
+    public static class SoundManager
+    {
 
         private static BGM bgm_ = null;
         private static SE se_ = null;
 
-        public static BGM BGM { get { return bgm_; }}
-        public static SE SE { get { return se_; }}
+        public static BGM BGM { get { return bgm_; } }
+        public static SE SE { get { return se_; } }
 
-        public static void Init() {
-            if(bgm_ == null && se_ == null) {
-                bgm_ = new BGM ();
-                se_ = new SE ();
-                SoundResources.Init ();
-                SoundSystem.Init ();
-                Debug.Log ("<color=green> SoundManager is initialized!!! </color>");
+        public static void Init()
+        {
+            if (bgm_ == null && se_ == null)
+            {
+                bgm_ = new BGM();
+                se_ = new SE();
+                SoundResources.Init();
+                SoundSystem.Init();
+                Debug.Log("<color=green> SoundManager is initialized!!! </color>");
             }
-            else {
-                Debug.LogWarning ("SoundManager has been initialized!!!!");
+            else
+            {
+                Debug.LogWarning("SoundManager has been initialized!!!!");
             }
         }
 
-        public static void Temp() {
+        public static void StopAll()
+        {
+            Debug.Assert(bgm_ != null, "Please Init SoundManager!");
+            Debug.Assert(se_ != null, "Please Init SoundManager!!");
+
+            bgm_.StopCategoryAll();
+            se_.StopCategoryAll();
+        }
+
+        public static void PauseAll()
+        {
+
+            Debug.Assert(bgm_ != null, "Please Init SoundManager!");
+            Debug.Assert(se_ != null, "Please Init SoundManager!!");
+
+            bgm_.PauseCategoryAll();
+            se_.PauseCategoryAll();
+        }
+
+        public static void UnPauseAll()
+        {
+
+            Debug.Assert(bgm_ != null, "Please Init SoundManager!");
+            Debug.Assert(se_ != null, "Please Init SoundManager!!");
+
+            bgm_.UnPauseCategoryAll();
+            se_.UnPauseCategoryAll();
+        }
+
+        public static void Temp()
+        {
             bgm_ = null;
             se_ = null;
-            SoundSystem.Temp ();
+            SoundSystem.Release();
         }
-    }    
+    }
 }
 

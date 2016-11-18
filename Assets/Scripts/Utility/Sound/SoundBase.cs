@@ -1,22 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace utility.sound {
-    
-    public abstract class SoundBase {
+namespace utility.sound
+{
+
+    public abstract class SoundBase
+    {
 
         protected string path_;
         protected int category_id_;
 
-        public void Play(string file_name, bool loop, bool one_shot, System.Action onFinish = null, float volume = 1.0f) {
+        public void Play(string file_name, bool loop, bool one_shot, System.Action onFinish = null, float volume = 1.0f)
+        {
 
-            Debug.Assert (!string.IsNullOrEmpty (file_name), "filename is empty!!!!");
+            Debug.Assert(!string.IsNullOrEmpty(file_name), "filename is empty!!!!");
 
-            SoundParam param = new SoundParam ();
+            SoundParam param = new SoundParam();
 
             AudioClip clip = Resources.Load<AudioClip>(path_ + file_name);
 
-            Debug.Assert (clip != null, file_name + " doesn't exist!!!!");
+            Debug.Assert(clip != null, file_name + " doesn't exist!!!!");
 
             param.clip_ = clip;
             param.file_name_ = file_name;
@@ -26,52 +29,56 @@ namespace utility.sound {
             param.category_id_ = category_id_;
             param.onFinish = onFinish;
 
-            SoundSystem.Play (param);
+            SoundSystem.Play(param);
         }
 
-        public void Stop(string file_name, float fade_time) {
-            
-            Debug.Assert (!string.IsNullOrEmpty (file_name), "filename is empty!!!!");
+        public void Stop(string file_name, float fade_time)
+        {
 
-            SoundSystem.Stop (file_name, category_id_, fade_time);
+            Debug.Assert(!string.IsNullOrEmpty(file_name), "filename is empty!!!!");
+
+            SoundSystem.Stop(file_name, category_id_, fade_time);
         }
 
-        public void StopCategoryAll() {
-            SoundSystem.StopCategoryAll (category_id_);
+        public void StopCategoryAll()
+        {
+            SoundSystem.StopCategoryAll(category_id_);
         }
 
-        public void StopAll() {
-            SoundSystem.StopAll ();
+        public void Pause(string file_name)
+        {
+
+            Debug.Assert(!string.IsNullOrEmpty(file_name), "filename is empty!!!!");
+
+            SoundSystem.Pause(file_name, category_id_);
         }
 
-        public void Pause(string file_name) {
+        public void UnPause(string file_name)
+        {
 
-            Debug.Assert (!string.IsNullOrEmpty (file_name), "filename is empty!!!!");
+            Debug.Assert(!string.IsNullOrEmpty(file_name), "filename is empty!!!!");
 
-            SoundSystem.Pause (file_name, category_id_);
+            SoundSystem.UnPause(file_name, category_id_);
         }
 
-        public void UnPause(string file_name) {
-
-            Debug.Assert (!string.IsNullOrEmpty (file_name), "filename is empty!!!!");
-
-            SoundSystem.UnPause (file_name, category_id_);
+        public void PauseCategoryAll()
+        {
+            SoundSystem.PauseCategoryAll(category_id_);
         }
 
-        public void PauseAll() {
-            SoundSystem.PauseAll ();
+        public void UnPauseCategoryAll()
+        {
+            SoundSystem.UnPauseCategoryAll(category_id_);
         }
 
-        public void UnPauseAll() {
-            SoundSystem.UnPauseAll ();
+        public void MasterVolumeSet(float volume)
+        {
+            SoundSystem.MasterVolumeSet(volume);
         }
 
-        public void MasterVolumeSet(float volume) {
-            SoundSystem.MasterVolumeSet (volume);
-        }
-
-        public float MasterVolumeGet() {
-            return SoundSystem.MasterVolumeGet ();
+        public float MasterVolumeGet()
+        {
+            return SoundSystem.MasterVolumeGet();
         }
     }
 
