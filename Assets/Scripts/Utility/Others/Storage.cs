@@ -15,20 +15,21 @@ using System.Collections.Generic;
  *  utility.others.Storage.DataUpdate(登録名, data);
  */
 namespace utility.others {
-    public static class Storage {
+    public static class Storage<T> {
 
-        private static Dictionary<string, int> data_dic_ = new Dictionary<string, int>();
+        private static Dictionary<string, T> data_dic_ = new Dictionary<string, T>();
 
-        public static void Add(string data_name, int data) {
+        public static void Add(string data_name, T data) {
 
             if (data_dic_.ContainsKey(data_name)) {
+                Debug.LogWarning("The key already used");
                 return;
             }
 
             data_dic_.Add(data_name, data);
         }
 
-        public static void DataUpdate(string data_name, int data) {
+        public static void DataUpdate(string data_name, T data) {
 
             if (data_dic_.ContainsKey(data_name)) {
                 data_dic_[data_name] = data;
@@ -37,15 +38,15 @@ namespace utility.others {
             }
         }
 
-        public static int Get(string data_name) {
+        public static T Get(string data_name) {
 
-            int data = 0;
+            T data;
 
             if (data_dic_.TryGetValue(data_name, out data)) {
                 return data;
             } else {
                 Debug.LogError(data_name + " doesn't exist!!!!");
-                return -1;
+                return default(T);
             }
 
         }
