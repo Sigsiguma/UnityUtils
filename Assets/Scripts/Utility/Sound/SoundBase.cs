@@ -1,17 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace utility.sound
-{
+namespace utility.sound {
 
-    public abstract class SoundBase
-    {
+    public abstract class SoundBase {
 
         protected string path_;
         protected int category_id_;
 
-        public void Play(string file_name, bool loop, bool one_shot, System.Action onFinish = null, float volume = 1.0f)
-        {
+        public void Play(string file_name, bool loop, bool one_shot, System.Action onFinish = null, float volume = 1.0f) {
 
             Debug.Assert(!string.IsNullOrEmpty(file_name), "filename is empty!!!!");
 
@@ -32,52 +29,44 @@ namespace utility.sound
             SoundSystem.Play(param);
         }
 
-        public void Stop(string file_name, float fade_time)
-        {
+        public void Stop(string file_name, float fade_time) {
 
             Debug.Assert(!string.IsNullOrEmpty(file_name), "filename is empty!!!!");
 
             SoundSystem.Stop(file_name, category_id_, fade_time);
         }
 
-        public void StopCategoryAll()
-        {
+        public void StopCategoryAll() {
             SoundSystem.StopCategoryAll(category_id_);
         }
 
-        public void Pause(string file_name)
-        {
+        public void Pause(string file_name) {
 
             Debug.Assert(!string.IsNullOrEmpty(file_name), "filename is empty!!!!");
 
             SoundSystem.Pause(file_name, category_id_);
         }
 
-        public void UnPause(string file_name)
-        {
+        public void UnPause(string file_name) {
 
             Debug.Assert(!string.IsNullOrEmpty(file_name), "filename is empty!!!!");
 
             SoundSystem.UnPause(file_name, category_id_);
         }
 
-        public void PauseCategoryAll()
-        {
+        public void PauseCategoryAll() {
             SoundSystem.PauseCategoryAll(category_id_);
         }
 
-        public void UnPauseCategoryAll()
-        {
+        public void UnPauseCategoryAll() {
             SoundSystem.UnPauseCategoryAll(category_id_);
         }
 
-        public void MasterVolumeSet(float volume)
-        {
+        public void MasterVolumeSet(float volume) {
             SoundSystem.MasterVolumeSet(volume);
         }
 
-        public float MasterVolumeGet()
-        {
+        public float MasterVolumeGet() {
             return SoundSystem.MasterVolumeGet();
         }
     }

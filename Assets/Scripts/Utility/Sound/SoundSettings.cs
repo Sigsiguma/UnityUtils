@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace utility.sound
-{
-    public static class SoundSettings
-    {
+namespace utility.sound {
+    public static class SoundSettings {
 
         public const string base_path_ = "Audio/";
 
@@ -16,16 +14,14 @@ namespace utility.sound
 
         public const int frame_rate_ = 60;
 
-        public enum SoundCategory
-        {
+        public enum SoundCategory {
             NONE,
             BGM,
             SE
         };
     }
 
-    public class SoundParam
-    {
+    public class SoundParam {
         public AudioClip clip_;
         public AudioSource source_;
         public string file_name_;
