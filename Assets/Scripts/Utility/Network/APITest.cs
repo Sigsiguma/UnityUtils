@@ -5,6 +5,15 @@ using UnityEngine;
 namespace network {
     public class APITest : APIInterface {
 
+        private const string kTestURL = "hoge";
+
+        public override void RequestAPI(RequestBase request) {
+            var httpParam = new HttpParam();
+            httpParam.url_ = kTestURL;
+            httpParam.request = request;
+            APINetworkManager.Instance.RequestAPI(this, httpParam);
+        }
+
         public override byte[] PackRequest(RequestBase request) {
             var req = request as APITestRequest;
             return PackRequest<APITestRequest>(req);

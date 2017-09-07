@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace network {
     public abstract class APIInterface {
+
+        public abstract void RequestAPI(RequestBase request);
+
         public virtual byte[] PackRequest(RequestBase request) {
             return PackRequest<RequestBase>(request);
         }
